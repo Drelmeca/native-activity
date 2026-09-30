@@ -1,0 +1,170 @@
+import { Link } from "expo-router";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { colors } from "../data/theme";
+
+const navigationItems = [
+  { href: "/", label: "Home", symbol: "⌂" },
+  { href: "/lessons", label: "Lessons", symbol: "▤" },
+];
+
+export default function AppShell({ activeRoute, children, eyebrow, title }) {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.canvas} />
+      <View style={styles.page}>
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.brandRow}>
+            <View style={styles.brand}>
+              <View style={styles.brandMark}>
+                <Text style={styles.brandMarkText}>L</Text>
+              </View>
+              <Text style={styles.brandName}>project</Text>
+            </View>
+            <View style={styles.avatar}>
+              <Text style={styles.avatarText}>✳</Text>
+            </View>
+          </View>
+          <Text style={styles.eyebrow}>{eyebrow}</Text>
+          <Text style={styles.title}>{title}</Text>
+          {children}
+        </ScrollView>
+        <View style={[styles.navBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+          {navigationItems.map((item) => {
+            const isActive = item.href === activeRoute;
+            return (
+              <Link href={item.href} asChild key={item.href}>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: isActive }}
+                  style={styles.navItem}
+                >
+                  <Text style={[styles.navSymbol, isActive && styles.navSymbolActive]}>{item.symbol}</Text>
+                  <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
+                </Pressable>
+              </Link>
+            );
+          })}
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: colors.canvas,
+  },
+  page: {
+    flex: 1,
+    alignSelf: "center",
+    width: "100%",
+    maxWidth: 560,
+    backgroundColor: colors.canvas,
+  },
+  scroll: {
+    flex: 1,
+  },
+  content: {
+    paddingHorizontal: 22,
+    paddingTop: 9,
+    paddingBottom: 25,
+  },
+  brandRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 28,
+  },
+  brand: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  brandMark: {
+    height: 31,
+    width: 31,
+    borderRadius: 11,
+    backgroundColor: colors.green,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 8,
+  },
+  brandMarkText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "900",
+  },
+  brandName: {
+    color: colors.ink,
+    fontSize: 14,
+    fontWeight: "900",
+    letterSpacing: -0.3,
+  },
+  avatar: {
+    height: 34,
+    width: 34,
+    borderRadius: 17,
+    backgroundColor: "#E4EBDD",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatarText: {
+    color: colors.green,
+    fontSize: 17,
+  },
+  eyebrow: {
+    color: colors.muted,
+    fontSize: 10,
+    fontWeight: "900",
+    letterSpacing: 1.6,
+    marginBottom: 8,
+  },
+  title: {
+    color: colors.ink,
+    fontSize: 34,
+    lineHeight: 39,
+    fontWeight: "800",
+    letterSpacing: -1.5,
+  },
+  navBar: {
+    minHeight: 68,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    backgroundColor: colors.white,
+    borderTopWidth: 1,
+    borderTopColor: colors.line,
+    paddingHorizontal: 16,
+  },
+  navItem: {
+    alignItems: "center",
+    justifyContent: "center",
+    minWidth: 72,
+    paddingVertical: 7,
+  },
+  navSymbol: {
+    color: "#929B95",
+    fontSize: 19,
+    lineHeight: 22,
+  },
+  navSymbolActive: {
+    color: colors.green,
+  },
+  navLabel: {
+    color: "#929B95",
+    fontSize: 10,
+    fontWeight: "600",
+    marginTop: 2,
+  },
+  navLabelActive: {
+    color: colors.green,
+    fontWeight: "900",
+  },
+});
