@@ -58,14 +58,14 @@ export default function LessonsScreen() {
 
 const styles = StyleSheet.create({
   headlineAccent: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 36,
     fontWeight: "800",
     letterSpacing: -1.7,
     lineHeight: 40,
   },
   intro: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 15,
     lineHeight: 23,
     marginTop: 10,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   listHeading: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 10,
     fontWeight: "800",
     letterSpacing: 1.5,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lime,
   },
   lessonNumberText: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 12,
     fontWeight: "800",
   },
@@ -163,33 +163,33 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   lessonTopic: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 9,
     fontWeight: "900",
     letterSpacing: 1,
   },
   duration: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 10,
   },
   lessonTitle: {
-    color: colors.ink,
+    color: colors.white,
     fontSize: 14,
     fontWeight: "800",
   },
   lessonDescription: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 11,
     lineHeight: 16,
     marginTop: 4,
   },
   arrow: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 23,
     marginLeft: 8,
   },
   footerNote: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 12,
     textAlign: "center",
     marginTop: 20,

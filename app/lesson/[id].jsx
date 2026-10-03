@@ -61,7 +61,7 @@ export default function LessonDetailScreen() {
           style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}
         >
           <Text style={styles.primaryButtonText}>Back to all lessons</Text>
-          <Text style={styles.primaryButtonArrow}>↗</Text>
+          <Text style={styles.primaryButtonArrow}>Back</Text>
         </Pressable>
       </Link>
     </AppShell>
@@ -70,21 +70,21 @@ export default function LessonDetailScreen() {
 
 const styles = StyleSheet.create({
   topic: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 10,
     fontWeight: "900",
     letterSpacing: 1.4,
     marginTop: 14,
   },
   headlineAccent: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 34,
     fontWeight: "800",
     letterSpacing: -1.4,
     lineHeight: 40,
   },
   intro: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 15,
     lineHeight: 23,
     marginTop: 10,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   sectionTitle: {
-    color: colors.ink,
+    color: colors.white,
     fontSize: 18,
     fontWeight: "800",
     letterSpacing: -0.4,

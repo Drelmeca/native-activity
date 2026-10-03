@@ -5,140 +5,137 @@ import { lessons } from "../data/lessons";
 import { colors } from "../data/theme";
 
 export default function HomeScreen() {
-  const featuredLesson = lessons[0];
+  const firstLesson = lessons[0];
 
   return (
-    <AppShell activeRoute="/" eyebrow="YOUR LEARNING SPACE" title="Small steps,">
-      <Text style={styles.headlineAccent}>big progress.</Text>
+    <AppShell activeRoute="/" eyebrow="YOUR REACT NATIVE JOURNEY" title="Build something">
+      <Text style={styles.headlineAccent}>you’re proud of.</Text>
       <Text style={styles.intro}>
-        Build your React Native foundations one lesson at a time.
-        Prepared by Team #3 Meca, Precillas, Hermoso, Gensis  
+        Learn the building blocks of React Native with a friendly, hands-on course.
       </Text>
 
-      
-
-      <View style={styles.sectionHeader}>
-        <View>
-          <Text style={styles.sectionTitle}>Your learning path</Text>
-          <Text style={styles.sectionSubtitle}>Six short lessons. One strong start.</Text>
+      <View style={styles.courseCard}>
+        <View style={styles.cardTop}>
+          <View style={styles.courseMark}>
+            <Text style={styles.courseMarkText}>✳</Text>
+          </View>
+          <Text style={styles.cardEyebrow}>A GOOD PLACE TO START</Text>
         </View>
-        <Link href="/lessons" asChild>
-          <Pressable accessibilityRole="button" hitSlop={8}>
-            <Text style={styles.seeAll}>See all</Text>
+        <Text style={styles.courseTitle}>React Native foundations</Text>
+        <Text style={styles.courseDescription}>
+          {lessons.length} bite-sized lessons to help you go from your first screen to a connected app.
+        </Text>
+        <View style={styles.courseDetails}>
+          <Text style={styles.courseDetail}>{lessons.length} SHORT LESSONS</Text>
+          <View style={styles.detailDivider} />
+          <Text style={styles.courseDetail}>LEARN AT YOUR PACE</Text>
+        </View>
+        <Link href={`/lesson/${firstLesson.id}`} asChild>
+          <Pressable
+            accessibilityRole="button"
+            style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}
+          >
+            <Text style={styles.primaryButtonText}>Start learning</Text>
+            <Text style={styles.primaryButtonArrow}>↗</Text>
           </Pressable>
         </Link>
       </View>
-
-      <View style={styles.previewList}>
-        {lessons.slice(0, 3).map((lesson, index) => (
-          <Link href={`/lesson/${lesson.id}`} asChild key={lesson.id}>
-            <Pressable
-              accessibilityRole="button"
-              style={({ pressed }) => [styles.lessonRow, pressed && styles.pressed]}
-            >
-              <View style={[styles.lessonNumber, index === 0 && styles.lessonNumberActive]}>
-                <Text style={[styles.lessonNumberText, index === 0 && styles.lessonNumberTextActive]}>
-                  {lesson.number}
-                </Text>
-              </View>
-              <View style={styles.lessonCopy}>
-                <Text style={styles.lessonTitle}>{lesson.title}</Text>
-                <Text style={styles.lessonMeta}>{lesson.duration} · {lesson.topic}</Text>
-              </View>
-              <Text style={styles.rowArrow}>›</Text>
-            </Pressable>
-          </Link>
-        ))}
-      </View>
-
     </AppShell>
   );
 }
 
 const styles = StyleSheet.create({
   headlineAccent: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 36,
     fontWeight: "800",
     letterSpacing: -1.7,
     lineHeight: 40,
   },
   intro: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 15,
     lineHeight: 23,
     marginTop: 10,
     marginBottom: 23,
-    maxWidth: 310,
+    maxWidth: 330,
   },
-  progressCard: {
+  courseCard: {
     backgroundColor: colors.ink,
-    borderRadius: 26,
+    borderRadius: 25,
     padding: 21,
     marginBottom: 29,
   },
-  progressTop: {
+  cardTop: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    marginBottom: 17,
+  },
+  courseMark: {
+    width: 30,
+    height: 30,
+    borderRadius: 11,
+    backgroundColor: "#283C35",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 9,
+  },
+  courseMarkText: {
+    color: colors.lime,
+    fontSize: 17,
   },
   cardEyebrow: {
     color: "#A8B3AE",
-    fontSize: 10,
-    fontWeight: "800",
-    letterSpacing: 1.5,
-    marginBottom: 7,
+    fontSize: 9,
+    fontWeight: "900",
+    letterSpacing: 1.2,
   },
-  progressTitle: {
+  courseTitle: {
     color: colors.white,
-    fontSize: 18,
-    fontWeight: "700",
-  },
-  progressBadge: {
-    backgroundColor: "#283C35",
-    paddingHorizontal: 11,
-    paddingVertical: 7,
-    borderRadius: 20,
-  },
-  progressBadgeText: {
-    color: colors.lime,
-    fontSize: 11,
+    fontSize: 20,
     fontWeight: "800",
+    letterSpacing: -0.5,
   },
-  progressTrack: {
-    height: 6,
-    borderRadius: 10,
-    backgroundColor: "#3B4A44",
-    marginTop: 22,
-    overflow: "hidden",
-  },
-  progressFill: {
-    width: "17%",
-    height: "100%",
-    borderRadius: 10,
-    backgroundColor: colors.lime,
-  },
-  progressCaption: {
+  courseDescription: {
     color: "#B4C0BA",
-    fontSize: 12,
-    marginTop: 9,
+    fontSize: 13,
+    lineHeight: 20,
+    marginTop: 7,
+  },
+  courseDetails: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 17,
     marginBottom: 18,
   },
-  continueButton: {
+  courseDetail: {
+    color: colors.lime,
+    fontSize: 9,
+    fontWeight: "800",
+    letterSpacing: 0.8,
+  },
+  detailDivider: {
+    width: 3,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: "#728177",
+    marginHorizontal: 9,
+  },
+  primaryButton: {
     backgroundColor: colors.lime,
     borderRadius: 15,
+    minHeight: 52,
     paddingHorizontal: 15,
-    paddingVertical: 14,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  continueButtonText: {
+  primaryButtonText: {
     color: colors.ink,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "800",
   },
-  continueArrow: {
+  primaryButtonArrow: {
     color: colors.ink,
     fontSize: 20,
     fontWeight: "700",
@@ -179,6 +176,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: colors.line,
+  },
+  lastLessonRow: {
+    borderBottomWidth: 0,
   },
   lessonNumber: {
     width: 38,

@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-import { Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
 import { colors } from "../data/theme";
 
 const navigationItems = [
@@ -13,8 +13,13 @@ export default function AppShell({ activeRoute, children, eyebrow, title }) {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.canvas} />
+      <StatusBar barStyle="light-content" backgroundColor={colors.canvas} />
       <View style={styles.page}>
+        <Image
+          source={require("../assets/smoke-background.png")}
+          resizeMode="stretch"
+          style={styles.backgroundImage}
+        />
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={styles.content}
@@ -68,6 +73,13 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 560,
     backgroundColor: colors.canvas,
+    overflow: "hidden",
+  },
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    width: "100%",
+    height: "110%",
   },
   scroll: {
     flex: 1,
@@ -102,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
   brandName: {
-    color: colors.ink,
+    color: colors.white,
     fontSize: 14,
     fontWeight: "900",
     letterSpacing: -0.3,
@@ -111,7 +123,7 @@ const styles = StyleSheet.create({
     height: 34,
     width: 34,
     borderRadius: 17,
-    backgroundColor: "#E4EBDD",
+    backgroundColor: "#D7F7DE",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -120,14 +132,14 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   eyebrow: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 10,
     fontWeight: "900",
     letterSpacing: 1.6,
     marginBottom: 8,
   },
   title: {
-    color: colors.ink,
+    color: colors.white,
     fontSize: 34,
     lineHeight: 39,
     fontWeight: "800",

@@ -1,7 +1,7 @@
 export const colors = {
-  canvas: "#F5F5EF",
+  canvas: "#000000",
   white: "#FFFFFF",
-  ink: "#19251F",
+  ink: "#000000",
   green: "#34724F",
   lime: "#C9F178",
   muted: "#727D75",
