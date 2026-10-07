@@ -11,6 +11,7 @@ export default function HomeScreen() {
     <AppShell activeRoute="/" eyebrow="YOUR REACT NATIVE JOURNEY" title="Build something">
       <Text style={styles.headlineAccent}>you’re proud of.</Text>
       <Text style={styles.intro}>
+        Learn the building blocks of React Native with a friendly, hands-on course.
       </Text>
 
       <View style={styles.courseCard}>
