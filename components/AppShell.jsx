@@ -8,7 +8,7 @@ const navigationItems = [
   { href: "/lessons", label: "Lessons", symbol: "▤" },
 ];
 
-export default function AppShell({ activeRoute, children, eyebrow, title }) {
+export default function AppShell({ activeRoute, children, eyebrow, title, hideNavBar = false }) {
   const insets = useSafeAreaInsets();
 
   return (
@@ -40,23 +40,25 @@ export default function AppShell({ activeRoute, children, eyebrow, title }) {
           <Text style={styles.title}>{title}</Text>
           {children}
         </ScrollView>
-        <View style={[styles.navBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
-          {navigationItems.map((item) => {
-            const isActive = item.href === activeRoute;
-            return (
-              <Link href={item.href} asChild key={item.href}>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: isActive }}
-                  style={styles.navItem}
-                >
-                  <Text style={[styles.navSymbol, isActive && styles.navSymbolActive]}>{item.symbol}</Text>
-                  <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
-                </Pressable>
-              </Link>
-            );
-          })}
-        </View>
+        {!hideNavBar && (
+          <View style={[styles.navBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+            {navigationItems.map((item) => {
+              const isActive = item.href === activeRoute;
+              return (
+                <Link href={item.href} asChild key={item.href}>
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityState={{ selected: isActive }}
+                    style={styles.navItem}
+                  >
+                    <Text style={[styles.navSymbol, isActive && styles.navSymbolActive]}>{item.symbol}</Text>
+                    <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
+                  </Pressable>
+                </Link>
+              );
+            })}
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
