@@ -11,13 +11,6 @@ export default function LessonDetailScreen() {
   if (!lesson) {
     return (
       <AppShell activeRoute="/lessons" eyebrow="LESSON NOT FOUND" title="Let’s get">
-        <Text style={styles.headlineAccent}>back on track.</Text>
-        <Text style={styles.intro}>That lesson isn’t in this learning path.</Text>
-        <Link href="/lessons" asChild>
-          <Pressable style={styles.primaryButton} accessibilityRole="button">
-            <Text style={styles.primaryButtonText}>Browse all lessons</Text>
-          </Pressable>
-        </Link>
       </AppShell>
     );
   }
@@ -60,8 +53,7 @@ export default function LessonDetailScreen() {
           accessibilityRole="button"
           style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}
         >
-          <Text style={styles.primaryButtonText}>Back to all lessons</Text>
-          <Text style={styles.primaryButtonArrow}>Back</Text>
+          <Text style={styles.primaryButtonArrow}>Back to lessons</Text>
         </Pressable>
       </Link>
     </AppShell>

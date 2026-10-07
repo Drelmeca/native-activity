@@ -6,7 +6,7 @@ import { colors } from "../data/theme";
 
 export default function LessonsScreen() {
   return (
-    <AppShell activeRoute="/lessons" eyebrow="THE COURSE" title="Learn at your">
+    <AppShell activeRoute="/lessons" eyebrow="THE COURSE" title="Learn at your" hideNavBar>
       <Text style={styles.headlineAccent}>own pace.</Text>
       <Text style={styles.intro}>
         A beginner-friendly path through the building blocks of React Native.
