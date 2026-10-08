@@ -3,64 +3,56 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import AppShell from "../components/AppShell";
 import { colors } from "../data/theme";
 
-
+const features = ["Modern UI", "Smooth & fast", "Pixel perfect"];
 
 export default function HomeScreen() {
   return (
     <AppShell activeRoute="/" eyebrow="DESIGN SYSTEM" title="">
       <View style={styles.heroCard}>
-        <View style={styles.leftPanel}>
-          <Text style={styles.buildTag}>BUILD</Text>
-          <Text style={styles.heroTitle}>YOUR</Text>
-          <Text style={styles.heroTitleAccent}>DREAM  </Text>
+        <View style={styles.heroCopy}>
+          <Text style={styles.buildTag}>BUILD YOUR</Text>
+          <Text style={styles.heroTitle}>DREAM</Text>
           <Text style={styles.heroSubTitle}>IN REACT NATIVE</Text>
 
           <View style={styles.timeBlock}>
-            <Text style={styles.timeLabel}>IN JUST</Text>
-            <View style={styles.timeValueRow}>
-              <Text style={styles.timeValue}>10</Text>
-              <Text style={styles.timeUnit}>Minutes</Text>
-            </View>
+            <Text style={styles.timeLabel}>START BUILDING IN</Text>
+            <Text style={styles.timeValue}>10 minutes</Text>
           </View>
 
-
-          <View style={styles.bottomRow}>
-            <View style={styles.sourceWrap}>
-              <View style={styles.playIconWrap}>
-                <Text style={styles.playIcon}>◉</Text>
+          <View style={styles.featureList}>
+            {features.map((feature) => (
+              <View key={feature} style={styles.featureItem}>
+                <Text style={styles.featureIcon}>✓</Text>
+                <Text style={styles.featureText}>{feature}</Text>
               </View>
-              <Text style={styles.sourceText}>SOURCE CODE</Text>
-            </View>
-            <View style={styles.metaStat}>
-              <Text style={styles.metaStatValue}>30</Text>
-              <Text style={styles.metaStatLabel}>SECONDS</Text>
-            </View>
-            <View style={styles.metaStatAccent}>
-              <Text style={styles.metaStatValue}>REACT</Text>
-              <Text style={styles.metaStatLabel}>NATIVE</Text>
-            </View>
+            ))}
           </View>
         </View>
 
-
-            <View style={styles.posterCard}>
-              <View style={styles.posterGlow} />
-              <View style={styles.posterContent}>
-                <Text style={styles.posterTag}>STRANGER</Text>
-                <Text style={styles.posterTag}>THINGS</Text>
-                <Text style={styles.posterMeta}>Thriller • Drama • Mystery</Text>
-              </View>
-            </View>
-
+        <View style={styles.posterCard}>
+          <View style={styles.posterGlow} />
+          <View style={styles.posterContent}>
+            <Text style={styles.posterBrand}>N</Text>
+            <View style={styles.posterRule} />
+            <Text style={styles.posterTag}>YOUR</Text>
+            <Text style={styles.posterTag}>NEXT</Text>
+            <Text style={styles.posterTagAccent}>BIG IDEA</Text>
+            <Text style={styles.posterMeta}>BUILT WITH REACT NATIVE</Text>
+          </View>
+        </View>
       </View>
 
       <View style={styles.ctaArea}>
         <Link href="/lessons" asChild>
-          <Pressable accessibilityRole="button" style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}>
-            <Text style={styles.primaryButtonText}>Start learning</Text>
+          <Pressable
+            accessibilityRole="button"
+            style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}
+          >
+            <Text style={styles.primaryButtonText}>Explore the lessons</Text>
+            <Text style={styles.primaryButtonArrow}>↗</Text>
           </Pressable>
         </Link>
-      </View> 
+      </View>
     </AppShell>
   );
 }
@@ -68,244 +60,149 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   heroCard: {
     backgroundColor: "#111111",
-    borderRadius: 28,
-    padding:90  ,
+    borderRadius: 26,
+    padding: 16,
     flexDirection: "row",
     alignItems: "stretch",
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.08)",
+    borderColor: "rgba(255, 255, 255, 0.1)",
     marginTop: 8,
   },
-  leftPanel: {
+  heroCopy: {
     flex: 1,
-    paddingRight: 8,
+    justifyContent: "center",
+    paddingRight: 10,
   },
   buildTag: {
     color: colors.white,
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "900",
-    letterSpacing: -1,
-    marginBottom: 2,
-    lineHeight: 25,
+    letterSpacing: 1.2,
+    marginBottom: 3,
   },
   heroTitle: {
     color: "#ff1e2d",
-    fontSize: 58,
+    fontSize: 40,
     fontWeight: "900",
-    letterSpacing: -3,
-    lineHeight: 52,
-  },
-  heroTitleAccent: {
-    color: "#ff1e2d",
-    fontSize: 52,
-    fontWeight: "900",
-    letterSpacing: -2.2,
-    lineHeight: 52,
-    marginTop: 4,
+    letterSpacing: -2.5,
+    lineHeight: 42,
   },
   heroSubTitle: {
     color: colors.white,
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: "800",
-    letterSpacing: 1.1,
-    marginTop: 10,
+    letterSpacing: 0.7,
+    marginTop: 5,
   },
   timeBlock: {
-    marginTop: 18,
+    marginTop: 19,
     marginBottom: 18,
   },
   timeLabel: {
+    color: "#B9B9B9",
+    fontSize: 9,
+    fontWeight: "800",
+    letterSpacing: 0.8,
+  },
+  timeValue: {
+    color: colors.white,
+    fontSize: 20,
+    fontWeight: "900",
+    marginTop: 3,
+  },
+  featureList: {
+    marginBottom: 3,
+  },
+  featureItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 9,
+  },
+  featureIcon: {
+    color: "#ff1e2d",
+    fontSize: 14,
+    fontWeight: "900",
+    marginRight: 8,
+  },
+  featureText: {
     color: colors.white,
     fontSize: 12,
     fontWeight: "700",
-    letterSpacing: 1.1,
-    marginBottom: 3,
-  },
-  timeValueRow: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    marginTop: 2,
-  },
-  timeValue: {
-    color: "#ff1e2d",
-    fontSize: 44,
-    fontWeight: "900",
-    letterSpacing: -2,
-    lineHeight: 42,
-  },
-  timeUnit: {
-    color: colors.white,
-    fontSize: 14,
-    fontWeight: "800",
-    letterSpacing: 1,
-    marginLeft: 8,
-  },
-  featureList: {
-    marginBottom: 18,
-  },
- 
-  bottomRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: 8,
-  },
-  sourceWrap: {
-    flexDirection: "row",
-    alignItems: "center",
-    flexShrink: 1,
-  },
-  playIconWrap: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    backgroundColor: "#ff1e2d",
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 8,
-  },
-  playIcon: {
-    color: colors.white,
-    fontSize: 9,
-    fontWeight: "900",
-  },
-  sourceText: {
-    color: colors.white,
-    fontSize: 9,
-    fontWeight: "800",
-    letterSpacing: 1.2,
-  },
-  metaStat: {
-    backgroundColor: "rgba(255, 255, 255, 0.06)",
-    borderRadius: 12,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    marginLeft: 10,
-    alignItems: "center",
-  },
-  metaStatAccent: {
-    backgroundColor: "rgba(255, 30, 45, 0.18)",
-    borderRadius: 12,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    marginLeft: 8,
-    alignItems: "center",
-  },
-  metaStatValue: {
-    color: colors.white,
-    fontSize: 11,
-    fontWeight: "900",
-  },
-  metaStatLabel: {
-    color: "#d9d9d9",
-    fontSize: 8,
-    fontWeight: "700",
-    letterSpacing: 0.9,
-    marginTop: 1,
-  },
-  rightPanel: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingLeft: 10,
-  },
-
-  headerActions: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginLeft: 8,
-  },
-  actionText: {
-    color: "#d3d3d3",
-    fontSize: 8,
-    fontWeight: "700",
-    marginLeft: 8,
   },
   posterCard: {
-    height: 205,
-    borderRadius: 18,
-    backgroundColor: "#5d1b1d",
+    width: "40%",
+    minHeight: 310,
+    borderRadius: 19,
+    backgroundColor: "#361014",
     overflow: "hidden",
     justifyContent: "flex-end",
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.15)",
+    borderColor: "rgba(255, 255, 255, 0.16)",
   },
   posterGlow: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(255, 127, 40, 0.2)",
+    backgroundColor: "rgba(255, 30, 45, 0.24)",
   },
   posterContent: {
-    paddingHorizontal: 14,
-    paddingBottom: 12,
-    zIndex: 1,
+    padding: 12,
+  },
+  posterBrand: {
+    color: "#ff1e2d",
+    fontSize: 48,
+    fontWeight: "900",
+    textAlign: "center",
+    marginBottom: 40,
+  },
+  posterRule: {
+    height: 2,
+    backgroundColor: "#ff1e2d",
+    marginBottom: 12,
   },
   posterTag: {
     color: colors.white,
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "900",
     letterSpacing: -1,
-    lineHeight: 22,
+    lineHeight: 25,
+  },
+  posterTagAccent: {
+    color: "#ff1e2d",
+    fontSize: 18,
+    fontWeight: "900",
+    letterSpacing: -0.5,
+    marginTop: 2,
   },
   posterMeta: {
-    color: "#f0d2b7",
-    fontSize: 9,
-    fontWeight: "700",
-    marginTop: 6,
-  },
-  phoneActions: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 12,
-    marginBottom: 9,
-  },
-  actionButton: {
-    backgroundColor: colors.white,
-    borderRadius: 14,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    marginRight: 8,
-    flex: 1,
-  },
-  actionButtonText: {
-    color: "#111111",
-    fontSize: 11,
+    color: "#E5DCDD",
+    fontSize: 7,
     fontWeight: "800",
-    textAlign: "center",
+    letterSpacing: 0.5,
+    marginTop: 9,
   },
-  secondaryActionButton: {
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderRadius: 14,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    flex: 1,
-  },
-  secondaryActionText: {
-    color: colors.white,
-    fontSize: 11,
-    fontWeight: "700",
-    textAlign: "center",
-  },
-  rowTitleWrap: {
-    marginBottom: 8,
-  },
-  rowTitle: {
-    color: colors.white,
-    fontSize: 11,
-    fontWeight: "800",
-  },  
-  
   ctaArea: {
     marginTop: 16,
-    alignItems: "center",
   },
-  
+  primaryButton: {
+    backgroundColor: "#ff1e2d",
+    borderRadius: 15,
+    minHeight: 52,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   primaryButtonText: {
     color: colors.white,
     fontSize: 13,
     fontWeight: "900",
-    letterSpacing: 1.2,
+    letterSpacing: 0.8,
     textTransform: "uppercase",
+  },
+  primaryButtonArrow: {
+    color: colors.white,
+    fontSize: 20,
+    fontWeight: "800",
   },
   pressed: {
     opacity: 0.8,
