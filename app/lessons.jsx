@@ -6,7 +6,7 @@ import { colors } from "../data/theme";
 
 export default function LessonsScreen() {
   return (
-    <AppShell activeRoute="/lessons" eyebrow="THE COURSE" title="Learn at your">
+    <AppShell activeRoute="/lessons" eyebrow="THE COURSE" title="Learn at your" hideNavBar>
       <Text style={styles.headlineAccent}>own pace.</Text>
       <Text style={styles.intro}>
         A beginner-friendly path through the building blocks of React Native.
@@ -50,6 +50,16 @@ export default function LessonsScreen() {
             </Pressable>
           </Link>
         ))}
+         <Link href="/" asChild>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Back to home"
+          style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}
+        >
+          <Text style={styles.backArrow}>‹</Text>
+          <Text style={styles.backButtonText}>Back to home</Text>
+        </Pressable>
+      </Link>
       </View>
       <Text style={styles.footerNote}>No rush. Come back whenever you’re ready.</Text>
     </AppShell>
@@ -57,6 +67,25 @@ export default function LessonsScreen() {
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+    paddingVertical: 6,
+    paddingRight: 10,
+  },
+  backArrow: {
+    color: colors.lime,
+    fontSize: 25,
+    lineHeight: 26,
+    marginRight: 5,
+  },
+  backButtonText: {
+    color: colors.white,
+    fontSize: 13,
+    fontWeight: "700",
+  },
   headlineAccent: {
     color: colors.white,
     fontSize: 36,
