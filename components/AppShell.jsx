@@ -1,6 +1,5 @@
-import { Link } from "expo-router";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-import { Image, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Image, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
 import { colors } from "../data/theme";
 
 const navigationItems = [
@@ -8,7 +7,7 @@ const navigationItems = [
   { href: "/lessons", label: "Lessons", symbol: "▤" },
 ];
 
-export default function AppShell({ activeRoute, children, eyebrow, title }) {
+export default function AppShell({ activeRoute, children, eyebrow, title, hideNavBar = false }) {
   const insets = useSafeAreaInsets();
 
   return (
@@ -40,23 +39,25 @@ export default function AppShell({ activeRoute, children, eyebrow, title }) {
           <Text style={styles.title}>{title}</Text>
           {children}
         </ScrollView>
-        <View style={[styles.navBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
-          {navigationItems.map((item) => {
-            const isActive = item.href === activeRoute;
-            return (
-              <Link href={item.href} asChild key={item.href}>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: isActive }}
-                  style={styles.navItem}
-                >
-                  <Text style={[styles.navSymbol, isActive && styles.navSymbolActive]}>{item.symbol}</Text>
-                  <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
-                </Pressable>
-              </Link>
-            );
-          })}
-        </View>
+        {!hideNavBar && (
+          <View style={[styles.navBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+            {navigationItems.map((item) => {
+              const isActive = item.href === activeRoute;
+              return (
+                <Link href={item.href} asChild key={item.href}>
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityState={{ selected: isActive }}
+                    style={styles.navItem}
+                  >
+                    <Text style={[styles.navSymbol, isActive && styles.navSymbolActive]}>{item.symbol}</Text>
+                    <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
+                  </Pressable>
+                </Link>
+              );
+            })}
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -144,39 +145,5 @@ const styles = StyleSheet.create({
     lineHeight: 39,
     fontWeight: "800",
     letterSpacing: -1.5,
-  },
-  navBar: {
-    minHeight: 68,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    backgroundColor: colors.white,
-    borderTopWidth: 1,
-    borderTopColor: colors.line,
-    paddingHorizontal: 16,
-  },
-  navItem: {
-    alignItems: "center",
-    justifyContent: "center",
-    minWidth: 72,
-    paddingVertical: 7,
-  },
-  navSymbol: {
-    color: "#929B95",
-    fontSize: 19,
-    lineHeight: 22,
-  },
-  navSymbolActive: {
-    color: colors.green,
-  },
-  navLabel: {
-    color: "#929B95",
-    fontSize: 10,
-    fontWeight: "600",
-    marginTop: 2,
-  },
-  navLabelActive: {
-    color: colors.green,
-    fontWeight: "900",
   },
 });
