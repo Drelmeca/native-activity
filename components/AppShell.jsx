@@ -2,14 +2,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Image, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
 import { colors } from "../data/theme";
 
-const navigationItems = [
-  { href: "/", label: "Home", symbol: "⌂" },
-  { href: "/lessons", label: "Lessons", symbol: "▤" },
-];
-
-export default function AppShell({ activeRoute, children, eyebrow, title, hideNavBar = false }) {
-  const insets = useSafeAreaInsets();
-
+export default function AppShell({ children, eyebrow, title }) {
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
       <StatusBar barStyle="light-content" backgroundColor={colors.canvas} />
@@ -39,25 +32,6 @@ export default function AppShell({ activeRoute, children, eyebrow, title, hideNa
           <Text style={styles.title}>{title}</Text>
           {children}
         </ScrollView>
-        {!hideNavBar && (
-          <View style={[styles.navBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
-            {navigationItems.map((item) => {
-              const isActive = item.href === activeRoute;
-              return (
-                <Link href={item.href} asChild key={item.href}>
-                  <Pressable
-                    accessibilityRole="button"
-                    accessibilityState={{ selected: isActive }}
-                    style={styles.navItem}
-                  >
-                    <Text style={[styles.navSymbol, isActive && styles.navSymbolActive]}>{item.symbol}</Text>
-                    <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
-                  </Pressable>
-                </Link>
-              );
-            })}
-          </View>
-        )}
       </View>
     </SafeAreaView>
   );

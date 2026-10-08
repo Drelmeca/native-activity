@@ -7,7 +7,7 @@ const features = ["Modern UI", "Smooth & fast", "Pixel perfect"];
 
 export default function HomeScreen() {
   return (
-    <AppShell activeRoute="/" eyebrow="DESIGN SYSTEM" title="">
+    <AppShell eyebrow="DESIGN SYSTEM" title="">
       <View style={styles.heroCard}>
         <View style={styles.heroCopy}>
           <Text style={styles.buildTag}>BUILD YOUR</Text>

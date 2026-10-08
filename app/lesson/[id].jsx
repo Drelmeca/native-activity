@@ -10,7 +10,7 @@ export default function LessonDetailScreen() {
 
   if (!lesson) {
     return (
-      <AppShell activeRoute="/lessons" eyebrow="LESSON NOT FOUND" title="Let’s get">
+      <AppShell eyebrow="LESSON NOT FOUND" title="Let’s get">
         <Text style={styles.headlineAccent}>back on track.</Text>
         <Text style={styles.intro}>That lesson isn’t in this learning path.</Text>
         <Link href="/lessons" asChild>
@@ -23,7 +23,7 @@ export default function LessonDetailScreen() {
   }
 
   return (
-    <AppShell activeRoute="/lessons" eyebrow={`LESSON ${lesson.number} · ${lesson.duration}`} title={lesson.title}>
+    <AppShell eyebrow={`LESSON ${lesson.number} · ${lesson.duration}`} title={lesson.title}>
       <Text style={styles.topic}>{lesson.topic.toUpperCase()}</Text>
       <Text style={styles.intro}>{lesson.description}</Text>
 
