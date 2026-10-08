@@ -12,13 +12,14 @@ export default function HomeScreen() {
         <View style={styles.leftPanel}>
           <Text style={styles.buildTag}>BUILD</Text>
           <Text style={styles.heroTitle}>YOUR</Text>
-         
+          <Text style={styles.heroTitleAccent}>DREAM  </Text>
+          <Text style={styles.heroSubTitle}>IN REACT NATIVE</Text>
 
           <View style={styles.timeBlock}>
             <Text style={styles.timeLabel}>IN JUST</Text>
             <View style={styles.timeValueRow}>
-              <Text style={styles.timeValue}>30</Text>
-              <Text style={styles.timeUnit}>SECONDS</Text>
+              <Text style={styles.timeValue}>10</Text>
+              <Text style={styles.timeUnit}>Minutes</Text>
             </View>
           </View>
 
