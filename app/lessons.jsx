@@ -6,7 +6,7 @@ import { colors } from "../data/theme";
 
 export default function LessonsScreen() {
   return (
-    <AppShell activeRoute="/lessons" eyebrow="THE COURSE" title="Learn at your">
+    <AppShell eyebrow="THE COURSE" title="Learn at your">
       <Text style={styles.headlineAccent}>own pace.</Text>
       <Text style={styles.intro}>
         A beginner-friendly path through the building blocks of React Native.
@@ -50,6 +50,16 @@ export default function LessonsScreen() {
             </Pressable>
           </Link>
         ))}
+         <Link href="/" asChild>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Back to home"
+          style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}
+        >
+          <Text style={styles.backArrow}>‹</Text>
+          <Text style={styles.backButtonText}>Back to home</Text>
+        </Pressable>
+      </Link>
       </View>
       <Text style={styles.footerNote}>No rush. Come back whenever you’re ready.</Text>
     </AppShell>
@@ -57,15 +67,34 @@ export default function LessonsScreen() {
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+    paddingVertical: 6,
+    paddingRight: 10,
+  },
+  backArrow: {
+    color: colors.lime,
+    fontSize: 25,
+    lineHeight: 26,
+    marginRight: 5,
+  },
+  backButtonText: {
+    color: colors.white,
+    fontSize: 13,
+    fontWeight: "700",
+  },
   headlineAccent: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 36,
     fontWeight: "800",
     letterSpacing: -1.7,
     lineHeight: 40,
   },
   intro: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 15,
     lineHeight: 23,
     marginTop: 10,
@@ -114,7 +143,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   listHeading: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 10,
     fontWeight: "800",
     letterSpacing: 1.5,
@@ -146,7 +175,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lime,
   },
   lessonNumberText: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 12,
     fontWeight: "800",
   },
@@ -163,33 +192,33 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   lessonTopic: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 9,
     fontWeight: "900",
     letterSpacing: 1,
   },
   duration: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 10,
   },
   lessonTitle: {
-    color: colors.ink,
+    color: colors.white,
     fontSize: 14,
     fontWeight: "800",
   },
   lessonDescription: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 11,
     lineHeight: 16,
     marginTop: 4,
   },
   arrow: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 23,
     marginLeft: 8,
   },
   footerNote: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 12,
     textAlign: "center",
     marginTop: 20,

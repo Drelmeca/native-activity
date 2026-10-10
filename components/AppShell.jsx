@@ -1,20 +1,17 @@
-import { Link } from "expo-router";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-import { Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Image, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
 import { colors } from "../data/theme";
 
-const navigationItems = [
-  { href: "/", label: "Home", symbol: "⌂" },
-  { href: "/lessons", label: "Lessons", symbol: "▤" },
-];
-
-export default function AppShell({ activeRoute, children, eyebrow, title }) {
-  const insets = useSafeAreaInsets();
-
+export default function AppShell({ children, eyebrow, title }) {
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.canvas} />
+      <StatusBar barStyle="light-content" backgroundColor={colors.canvas} />
       <View style={styles.page}>
+        <Image
+          source={require("../assets/smoke-background.png")}
+          resizeMode="stretch"
+          style={styles.backgroundImage}
+        />
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={styles.content}
@@ -35,23 +32,6 @@ export default function AppShell({ activeRoute, children, eyebrow, title }) {
           <Text style={styles.title}>{title}</Text>
           {children}
         </ScrollView>
-        <View style={[styles.navBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
-          {navigationItems.map((item) => {
-            const isActive = item.href === activeRoute;
-            return (
-              <Link href={item.href} asChild key={item.href}>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: isActive }}
-                  style={styles.navItem}
-                >
-                  <Text style={[styles.navSymbol, isActive && styles.navSymbolActive]}>{item.symbol}</Text>
-                  <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
-                </Pressable>
-              </Link>
-            );
-          })}
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -68,6 +48,13 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 560,
     backgroundColor: colors.canvas,
+    overflow: "hidden",
+  },
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    width: "100%",
+    height: "110%",
   },
   scroll: {
     flex: 1,
@@ -102,7 +89,7 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
   brandName: {
-    color: colors.ink,
+    color: colors.white,
     fontSize: 14,
     fontWeight: "900",
     letterSpacing: -0.3,
@@ -111,7 +98,7 @@ const styles = StyleSheet.create({
     height: 34,
     width: 34,
     borderRadius: 17,
-    backgroundColor: "#E4EBDD",
+    backgroundColor: "#D7F7DE",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -120,51 +107,17 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   eyebrow: {
-    color: colors.muted,
+    color: colors.white,
     fontSize: 10,
     fontWeight: "900",
     letterSpacing: 1.6,
     marginBottom: 8,
   },
   title: {
-    color: colors.ink,
+    color: colors.white,
     fontSize: 34,
     lineHeight: 39,
     fontWeight: "800",
     letterSpacing: -1.5,
-  },
-  navBar: {
-    minHeight: 68,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    backgroundColor: colors.white,
-    borderTopWidth: 1,
-    borderTopColor: colors.line,
-    paddingHorizontal: 16,
-  },
-  navItem: {
-    alignItems: "center",
-    justifyContent: "center",
-    minWidth: 72,
-    paddingVertical: 7,
-  },
-  navSymbol: {
-    color: "#929B95",
-    fontSize: 19,
-    lineHeight: 22,
-  },
-  navSymbolActive: {
-    color: colors.green,
-  },
-  navLabel: {
-    color: "#929B95",
-    fontSize: 10,
-    fontWeight: "600",
-    marginTop: 2,
-  },
-  navLabelActive: {
-    color: colors.green,
-    fontWeight: "900",
   },
 });

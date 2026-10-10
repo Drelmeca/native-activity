@@ -1,224 +1,210 @@
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import AppShell from "../components/AppShell";
-import { lessons } from "../data/lessons";
 import { colors } from "../data/theme";
 
+const features = ["Modern UI", "Smooth & fast", "Pixel perfect"];
+
 export default function HomeScreen() {
-  const featuredLesson = lessons[0];
-
   return (
-    <AppShell activeRoute="/" eyebrow="YOUR LEARNING SPACE" title="Small steps,">
-      <Text style={styles.headlineAccent}>big progress.</Text>
-      <Text style={styles.intro}>
-        Build your React Native foundations one lesson at a time.
-        Prepared by Team #3 Meca, Precillas, Hermoso, Gensis  
-      </Text>
+    <AppShell eyebrow="DESIGN SYSTEM" title="">
+      <View style={styles.heroCard}>
+        <View style={styles.heroCopy}>
+          <Text style={styles.buildTag}>BUILD YOUR</Text>
+          <Text style={styles.heroTitle}>DREAM</Text>
+          <Text style={styles.heroSubTitle}>IN REACT NATIVE</Text>
 
-      
+          <View style={styles.timeBlock}>
+            <Text style={styles.timeLabel}>START BUILDING IN</Text>
+            <Text style={styles.timeValue}>10 minutes</Text>
+          </View>
 
-      <View style={styles.sectionHeader}>
-        <View>
-          <Text style={styles.sectionTitle}>Your learning path</Text>
-          <Text style={styles.sectionSubtitle}>Six short lessons. One strong start.</Text>
+          <View style={styles.featureList}>
+            {features.map((feature) => (
+              <View key={feature} style={styles.featureItem}>
+                <Text style={styles.featureIcon}>✓</Text>
+                <Text style={styles.featureText}>{feature}</Text>
+              </View>
+            ))}
+          </View>
         </View>
+
+        <View style={styles.posterCard}>
+          <View style={styles.posterGlow} />
+          <View style={styles.posterContent}>
+            <Text style={styles.posterBrand}>N</Text>
+            <View style={styles.posterRule} />
+            <Text style={styles.posterTag}>YOUR</Text>
+            <Text style={styles.posterTag}>NEXT</Text>
+            <Text style={styles.posterTagAccent}>BIG IDEA</Text>
+            <Text style={styles.posterMeta}>BUILT WITH REACT NATIVE</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.ctaArea}>
         <Link href="/lessons" asChild>
-          <Pressable accessibilityRole="button" hitSlop={8}>
-            <Text style={styles.seeAll}>See all</Text>
+          <Pressable
+            accessibilityRole="button"
+            style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}
+          >
+            <Text style={styles.primaryButtonText}>Explore the lessons</Text>
+            <Text style={styles.primaryButtonArrow}>↗</Text>
           </Pressable>
         </Link>
       </View>
-
-      <View style={styles.previewList}>
-        {lessons.slice(0, 3).map((lesson, index) => (
-          <Link href={`/lesson/${lesson.id}`} asChild key={lesson.id}>
-            <Pressable
-              accessibilityRole="button"
-              style={({ pressed }) => [styles.lessonRow, pressed && styles.pressed]}
-            >
-              <View style={[styles.lessonNumber, index === 0 && styles.lessonNumberActive]}>
-                <Text style={[styles.lessonNumberText, index === 0 && styles.lessonNumberTextActive]}>
-                  {lesson.number}
-                </Text>
-              </View>
-              <View style={styles.lessonCopy}>
-                <Text style={styles.lessonTitle}>{lesson.title}</Text>
-                <Text style={styles.lessonMeta}>{lesson.duration} · {lesson.topic}</Text>
-              </View>
-              <Text style={styles.rowArrow}>›</Text>
-            </Pressable>
-          </Link>
-        ))}
-      </View>
-
     </AppShell>
   );
 }
 
 const styles = StyleSheet.create({
-  headlineAccent: {
-    color: colors.green,
-    fontSize: 36,
-    fontWeight: "800",
-    letterSpacing: -1.7,
-    lineHeight: 40,
-  },
-  intro: {
-    color: colors.muted,
-    fontSize: 15,
-    lineHeight: 23,
-    marginTop: 10,
-    marginBottom: 23,
-    maxWidth: 310,
-  },
-  progressCard: {
-    backgroundColor: colors.ink,
+  heroCard: {
+    backgroundColor: "#111111",
     borderRadius: 26,
-    padding: 21,
-    marginBottom: 29,
-  },
-  progressTop: {
+    padding: 16,
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  cardEyebrow: {
-    color: "#A8B3AE",
-    fontSize: 10,
-    fontWeight: "800",
-    letterSpacing: 1.5,
-    marginBottom: 7,
-  },
-  progressTitle: {
-    color: colors.white,
-    fontSize: 18,
-    fontWeight: "700",
-  },
-  progressBadge: {
-    backgroundColor: "#283C35",
-    paddingHorizontal: 11,
-    paddingVertical: 7,
-    borderRadius: 20,
-  },
-  progressBadgeText: {
-    color: colors.lime,
-    fontSize: 11,
-    fontWeight: "800",
-  },
-  progressTrack: {
-    height: 6,
-    borderRadius: 10,
-    backgroundColor: "#3B4A44",
-    marginTop: 22,
+    alignItems: "stretch",
     overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.1)",
+    marginTop: 8,
   },
-  progressFill: {
-    width: "17%",
-    height: "100%",
-    borderRadius: 10,
-    backgroundColor: colors.lime,
+  heroCopy: {
+    flex: 1,
+    justifyContent: "center",
+    paddingRight: 10,
   },
-  progressCaption: {
-    color: "#B4C0BA",
+  buildTag: {
+    color: colors.white,
+    fontSize: 15,
+    fontWeight: "900",
+    letterSpacing: 1.2,
+    marginBottom: 3,
+  },
+  heroTitle: {
+    color: "#ff1e2d",
+    fontSize: 40,
+    fontWeight: "900",
+    letterSpacing: -2.5,
+    lineHeight: 42,
+  },
+  heroSubTitle: {
+    color: colors.white,
     fontSize: 12,
-    marginTop: 9,
+    fontWeight: "800",
+    letterSpacing: 0.7,
+    marginTop: 5,
+  },
+  timeBlock: {
+    marginTop: 19,
     marginBottom: 18,
   },
-  continueButton: {
-    backgroundColor: colors.lime,
-    borderRadius: 15,
-    paddingHorizontal: 15,
-    paddingVertical: 14,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  continueButtonText: {
-    color: colors.ink,
-    fontSize: 14,
+  timeLabel: {
+    color: "#B9B9B9",
+    fontSize: 9,
     fontWeight: "800",
+    letterSpacing: 0.8,
   },
-  continueArrow: {
-    color: colors.ink,
+  timeValue: {
+    color: colors.white,
     fontSize: 20,
-    fontWeight: "700",
+    fontWeight: "900",
+    marginTop: 3,
   },
-  sectionHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 13,
+  featureList: {
+    marginBottom: 3,
   },
-  sectionTitle: {
-    color: colors.ink,
-    fontSize: 19,
-    fontWeight: "800",
-    letterSpacing: -0.5,
-  },
-  sectionSubtitle: {
-    color: colors.muted,
-    fontSize: 12,
-    marginTop: 4,
-  },
-  seeAll: {
-    color: colors.green,
-    fontSize: 13,
-    fontWeight: "800",
-  },
-  previewList: {
-    backgroundColor: colors.white,
-    borderRadius: 21,
-    paddingHorizontal: 14,
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: colors.line,
-  },
-  lessonRow: {
-    minHeight: 72,
+  featureItem: {
     flexDirection: "row",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: colors.line,
+    marginBottom: 9,
   },
-  lessonNumber: {
-    width: 38,
-    height: 38,
-    borderRadius: 13,
-    backgroundColor: colors.canvas,
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 12,
-  },
-  lessonNumberActive: {
-    backgroundColor: colors.lime,
-  },
-  lessonNumberText: {
-    color: colors.muted,
-    fontSize: 12,
-    fontWeight: "800",
-  },
-  lessonNumberTextActive: {
-    color: colors.ink,
-  },
-  lessonCopy: {
-    flex: 1,
-  },
-  lessonTitle: {
-    color: colors.ink,
+  featureIcon: {
+    color: "#ff1e2d",
     fontSize: 14,
+    fontWeight: "900",
+    marginRight: 8,
+  },
+  featureText: {
+    color: colors.white,
+    fontSize: 12,
     fontWeight: "700",
   },
-  lessonMeta: {
-    color: colors.muted,
-    fontSize: 11,
-    marginTop: 4,
+  posterCard: {
+    width: "40%",
+    minHeight: 310,
+    borderRadius: 19,
+    backgroundColor: "#361014",
+    overflow: "hidden",
+    justifyContent: "flex-end",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.16)",
   },
-  rowArrow: {
-    color: colors.muted,
-    fontSize: 22,
-    marginLeft: 8,
+  posterGlow: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(255, 30, 45, 0.24)",
+  },
+  posterContent: {
+    padding: 12,
+  },
+  posterBrand: {
+    color: "#ff1e2d",
+    fontSize: 48,
+    fontWeight: "900",
+    textAlign: "center",
+    marginBottom: 40,
+  },
+  posterRule: {
+    height: 2,
+    backgroundColor: "#ff1e2d",
+    marginBottom: 12,
+  },
+  posterTag: {
+    color: colors.white,
+    fontSize: 24,
+    fontWeight: "900",
+    letterSpacing: -1,
+    lineHeight: 25,
+  },
+  posterTagAccent: {
+    color: "#ff1e2d",
+    fontSize: 18,
+    fontWeight: "900",
+    letterSpacing: -0.5,
+    marginTop: 2,
+  },
+  posterMeta: {
+    color: "#E5DCDD",
+    fontSize: 7,
+    fontWeight: "800",
+    letterSpacing: 0.5,
+    marginTop: 9,
+  },
+  ctaArea: {
+    marginTop: 16,
+  },
+  primaryButton: {
+    backgroundColor: "#ff1e2d",
+    borderRadius: 15,
+    minHeight: 52,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  primaryButtonText: {
+    color: colors.white,
+    fontSize: 13,
+    fontWeight: "900",
+    letterSpacing: 0.8,
+    textTransform: "uppercase",
+  },
+  primaryButtonArrow: {
+    color: colors.white,
+    fontSize: 20,
+    fontWeight: "800",
   },
   pressed: {
-    opacity: 0.76,
+    opacity: 0.8,
   },
 });
