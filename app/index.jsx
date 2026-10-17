@@ -49,7 +49,7 @@ export default function HomeScreen() {
             style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}
           >
             <Text style={styles.primaryButtonText}>Explore the lessons</Text>
-            <Text style={styles.primaryButtonArrow}>↗</Text>
+            <Text style={styles.primaryButtonArrow}>click here↗</Text>
           </Pressable>
         </Link>
       </View>
